@@ -1,0 +1,144 @@
+# ==============================================================================
+# PROJECT 3: INDIA GCC REGULATORY CONFLICT REGISTER
+# Deliverable 5: Enterprise Model Governance Card & Registration Schema
+# Author: Vasu Sharma | HealthTech AI Governance Strategist
+# Governing Regimes: EU AI Act (2024/1689) | EU GDPR (2016/679) | India DPDPA 2023
+# Standards: Strict 7-Bit ASCII, EU AI Act Annex IV Technical Documentation File
+# ==============================================================================
+
+schema_metadata:
+  schema_id: "gov.healthtech.model-card.v2"
+  specification_version: "2.4.0"
+  encoding: "US-ASCII"
+  publication_date: "2026-10-11"
+  governing_law:
+    - "Regulation (EU) 2024/1689 (EU AI Act, Articles 10, 11, 12, 14, 18, 73)"
+    - "Regulation (EU) 2016/679 (EU GDPR, Articles 4(5), 5, 9, 17, 22, 28, 32, 46)"
+    - "Digital Personal Data Protection Act, 2023 (India DPDPA, Sections 8, 10(2)(c), 16, 17)"
+    - "Commission Implementing Decision (EU) 2021/914 (SCC Module 2: C2P)"
+
+system_identity:
+  model_id: "MOD-CLIN-TR-0084"
+  model_name: "AlphaTriage-Emergency-Neuro-V2"
+  canonical_version: "2.4.1"
+  model_type: "Convolutional Neural Network & Vision Transformer Hybrid"
+  deployment_status: "Active Clinical Trial & Deployment"
+  intended_clinical_domain: "Emergency Radiology / Acute Intracranial Triage"
+
+regulatory_classification:
+  eu_ai_act_risk_tier: "High-Risk"
+  eu_ai_act_classification_ground: "Annex III, Point 5(d) (Emergency healthcare triage prioritization)"
+  eu_mdr_qualification: "Medical Device Software (SaMD)"
+  eu_mdr_risk_class: "Class IIa under Regulation (EU) 2017/745, Annex VIII, Rule 11"
+  ce_mark_status: "Conformity Assessment Pending (Notified Body 0123)"
+  us_fda_predicate_reference: "510(k) Class II CADe/CADx Radiological Computer-Assisted Triage"
+  india_dpdpa_designation: "Significant Data Fiduciary (SDF) Pipeline under Section 10"
+
+governance_and_entity_ownership:
+  controller_exporter:
+    legal_entity_name: "European University Hospital Healthcare Consortium GmbH"
+    corporate_registration: "HRB 189204 (Munich Commercial Register, Germany)"
+    physical_jurisdiction: "Munich, Bavaria, Germany (European Union)"
+    group_dpo_contact: "dpo-consortium@clinical-ai-hub.de"
+    statutory_role: "Data Controller (GDPR Art. 4(7)) & AI Deployer/Provider (AI Act Art. 3)"
+  
+  processor_importer_gcc:
+    legal_entity_name: "HealthTech Engineering Capability Center India Pvt. Ltd."
+    corporate_identification_number: "U72200KA2021PTC145890 (Registrar of Companies, Karnataka)"
+    physical_jurisdiction: "Outer Ring Road Tech Corridor, Bengaluru, Karnataka, India"
+    resident_grievance_officer: "grievance-gcc@healthtech-india.com"
+    statutory_role: "Data Processor (GDPR Art. 4(8)) & Downstream Technical Operator"
+  
+  cross_border_transfer_safeguards:
+    primary_instrument: "Standard Contractual Clauses (Decision (EU) 2021/914, Module 2: Controller-to-Processor)"
+    contract_execution_date: "2026-01-15"
+    transfer_impact_assessment_ref: "TIA-2026-EU-IND-004-VERIFIED"
+    clause_14_local_law_conclusion: "Adequacy missing; transfer legitimate solely with mandatory technical TOMs (HSM + VDI)"
+    dpdpa_inward_transfer_status: "Lawful under Section 16(1) (Non-blacklisted jurisdiction)"
+
+intended_clinical_purpose_and_boundaries:
+  indications_for_use:
+    - "Automated triaging and diagnostic prioritization of non-contrast acute head CT DICOM series."
+    - "Flagging potential intracranial hemorrhage (subdural, epidural, intraparenchymal, subarachnoid)."
+    - "Prioritizing emergency department worklists for rapid radiologist review."
+  contraindications_and_prohibitions:
+    - "Strictly prohibited as an autonomous standalone diagnostic tool (zero clinical action without radiologist review)."
+    - "Contraindicated for pediatric patient cohorts under 18 years of age."
+    - "Contraindicated for MRI, PET, or non-contrast abdominal imaging series."
+
+human_oversight_specification:
+  oversight_paradigm: "Human-in-the-Loop (HITL) with Mandatory Pre-Action Verification"
+  statutory_compliance: "EU AI Act Art. 14(4) & GDPR Art. 22(1)"
+  technical_mechanisms:
+    delayed_reveal_interface:
+      enabled: true
+      protocol: "Attending radiologist must record independent clinical impression before AI score reveals."
+      rationale: "Prevents confirmation bias and automation complacency."
+    override_control:
+      enabled: true
+      protocol: "1-click physician veto. Physician override logs immediate telemetry event with mandatory reason code."
+    training_requirements:
+      certified_curriculum: "Clinical AI Risk and Cognitive Oversight Certification (4 Hours)"
+
+training_data_provenance_and_bias_controls:
+  dataset_provenance:
+    total_training_slices: 145000
+    source_hospitals:
+      - "Munich University Medical Center (Germany): 42%"
+      - "AP-HP Paris Hospital Group (France): 28%"
+      - "Amsterdam University Medical Center (Netherlands): 18%"
+      - "Vienna General Hospital AKH (Austria): 12%"
+    temporal_span: "2020-01 to 2025-12"
+  demographic_representation_benchmarks:
+    age_cohort_distribution:
+      young_adults_18_35: 0.152
+      middle_aged_36_50: 0.224
+      older_adults_51_65: 0.308
+      geriatric_66_plus: 0.316
+    sex_distribution:
+      male_cohort: 0.514
+      female_cohort: 0.486
+    demographic_parity_threshold: 0.95
+    equalized_odds_maximum_disparity: 0.025
+    statutory_mandate: "EU AI Act Art. 10(2) & 10(3) (Representative, error-free training sets)"
+
+technical_and_organizational_measures:
+  endpoint_security:
+    vdi_enforcement: "Access restricted strictly to Virtual Desktop Infrastructure (AWS WorkSpaces / Citrix)"
+    zero_local_persistence: "OS policy blocks local drive mapping, clipboard copying, and USB mounting"
+    memory_scrubbing: "Ephemeral cloud compute nodes terminate and scrub RAM upon session disconnect"
+  cryptographic_controls:
+    encryption_at_rest: "AES-256 with rotating initialization vectors"
+    encryption_in_transit: "Mutual TLS 1.3 with Perfect Forward Secrecy"
+    key_isolation: "Master encryption keys secured in FIPS 140-3 Level 3 HSM in Frankfurt; zero keys exported to India"
+  pseudonymization_service:
+    edge_tokenization: "Direct patient identifiers scrubbed inside EU boundary before cross-border transmission"
+    lookup_table_location: "Encrypted PostgreSQL vault hosted exclusively in Frankfurt eu-central-1"
+
+automated_logging_and_lifecycle_retention:
+  statutory_basis: "EU AI Act Art. 12(1) & 12(2) (Automated logging of high-risk operations)"
+  log_schema_fields:
+    - "telemetry_event_uuid: Unique cryptographic event identifier"
+    - "inference_timestamp_utc: ISO 8601 millisecond timestamp"
+    - "input_data_tensor_hash: SHA-256 hash of normalized DICOM tensor"
+    - "model_version_commit: Git commit hash of deployed inference weights"
+    - "algorithmic_triage_score: Calibrated probability output [0.000 to 1.000]"
+    - "triage_priority_assignment: STAT | URGENT | ROUTINE"
+    - "physician_user_identifier: Pseudonymized physician staff token"
+    - "human_review_latency_seconds: Duration between display and clinical action"
+    - "physician_action_status: ACCEPTED | OVERRIDDEN | DISMISSED"
+    - "override_rationale_code: Clinical diagnostic override taxonomy"
+  retention_schedules:
+    operational_telemetry_logs: "6 Months mandatory retention per EU AI Act Art. 12(2)"
+    regulatory_technical_documentation: "10 Years retention per EU AI Act Art. 18 & Annex IV"
+    personal_clinical_health_data: "Erased upon episode discharge; GDPR Art. 17 right to erasure fully honored"
+  conflict_resolution_logic:
+    conflict_code: "CR-02"
+    reconciliation_protocol: "GDPR Art. 17 erasure requests purge patient re-identification keys; decoupled system operational logs retained in WORM store under GDPR Art. 17(3)(b) statutory legal obligation exemption."
+
+incident_management_and_reporting_escalation:
+  breach_escalation_sla:
+    gdpr_dpa_notification: "Within 72 hours of becoming aware (GDPR Art. 33)"
+    cert_in_cybersecurity_notification: "Within 6 hours of incident detection (CERT-In 2022 Directions)"
+    ai_act_serious_incident_notification: "Within 15 calendar days (EU AI Act Art. 73) or 2 days for widespread fatal events"
+  standardized_gcc_internal_trigger: "4-Hour internal escalation SLA from GCC SOC to Group DPO / CISO"
